@@ -9,8 +9,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app/ .
 
-RUN python download_model.py
-
 EXPOSE 8000
 
-CMD ["python", "server.py"]
+CMD ["sh", "-c", "python download_model.py && python server.py"]
