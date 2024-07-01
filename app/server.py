@@ -41,9 +41,7 @@ def predict():
 
     result = {label: f"{pred * 100:.2f}%" for label, pred in zip(labels, predictions)}
 
-    ip_address = request.remote_addr
     app.logger.info(f"IP: {request.remote_addr} - Headers: {request.headers}")
-
 
     return jsonify({'predictions': result})
 
