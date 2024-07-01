@@ -4,6 +4,8 @@ RUN apt-get update && apt-get install -y libglib2.0-0
 
 WORKDIR /app
 
+EXPOSE 8000
+
 COPY app/requirements.txt .
 
 RUN pip install --upgrade pip
