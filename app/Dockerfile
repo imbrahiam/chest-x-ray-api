@@ -1,10 +1,6 @@
 FROM python:3.8-slim
 
-RUN apt-get update && apt-get install -y \
-    ffmpeg \
-    libsm6 \
-    libxext6 \
-    libgl1-mesa-glx   # Install libGL.so.1 for OpenGL support
+RUN apt-get update && apt-get install libgl1
 
 WORKDIR /app
 
