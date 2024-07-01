@@ -9,6 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app/ .
 
-EXPOSE 8000
-
 CMD ["sh", "-c", "python download_model.py && python server.py"]
