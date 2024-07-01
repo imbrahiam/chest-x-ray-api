@@ -39,12 +39,9 @@ def predict():
     prediction = model.predict(img)
 
     predictions = prediction[0].tolist()
-    print(predictions)
 
     result = {label: f"{pred * 100:.2f}%" for label, pred in zip(labels, predictions)}
 
-    print(result)
-    
     return jsonify({'predictions': result})
 
 if __name__ == '__main__':
