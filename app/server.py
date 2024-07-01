@@ -18,7 +18,7 @@ model.compile(optimizer='adam', loss='binary_crossentropy')
 
 def preprocess_image(image_bytes, target_size=(224, 224)):
     nparr = np.frombuffer(image_bytes, np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR) # Color en vez de grayscale
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     img = cv2.resize(img, target_size)
     img = img / 255.0
     img = np.expand_dims(img, axis=0)
@@ -37,10 +37,13 @@ def predict():
     img = preprocess_image(img_bytes)
 
     prediction = model.predict(img)
-
     predictions = prediction[0].tolist()
 
     result = {label: f"{pred * 100:.2f}%" for label, pred in zip(labels, predictions)}
+
+    ip_address = request.remote_addr
+    app.logger.info(f"IP: {request.remote_addr} - Headers: {request.headers}")
+
 
     return jsonify({'predictions': result})
 
