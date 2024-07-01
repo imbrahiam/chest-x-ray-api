@@ -24,6 +24,10 @@ def preprocess_image(image_bytes, target_size=(224, 224)):
     img = np.expand_dims(img, axis=0)
     return img
 
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({'status': 'ok'}), 200
+
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
@@ -46,4 +50,4 @@ def predict():
     return jsonify({'predictions': result})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='localhost', port=8000, debug=True)
